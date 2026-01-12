@@ -106,8 +106,14 @@ with sync_playwright() as p:
 
     # 1. כניסה לאתר
     page.goto("https://www.dira.moch.gov.il/", timeout=60000)
+    
+    # המתנה לטעינה מלאה של העמוד
+    page.wait_for_load_state("networkidle", timeout=60000)
 
     # 2. התחברות
+    print("מחכה לשדות ההתחברות...")
+    page.wait_for_selector("#loginNumber", timeout=30000)
+    page.wait_for_selector("#loginPassword", timeout=30000)
     page.fill("#loginNumber", USERNAME)
     page.fill("#loginPassword", PASSWORD)
     

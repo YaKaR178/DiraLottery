@@ -50,10 +50,10 @@ jobs:
         playwright install chromium
         
     - name: Restore position file from previous run
+      continue-on-error: true
       uses: actions/download-artifact@v4
       with:
         name: position-file
-        if-no-files-found: ignore
         
     - name: Run lottery check
       env:
